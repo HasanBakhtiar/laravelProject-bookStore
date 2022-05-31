@@ -17,6 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['namespace'=>'admin','prefix'=>'admin','as'=>'admin'],function(){
-    Route::get('/','indexController@index');
+Route::group(['namespace'=>'admin','prefix'=>'admin','as'=>'admin.'],function(){
+    Route::get('/','indexController@index')->name('index');
+
+    Route::group(['namespace'=>'publisher','prefix'=>'publisher','as'=>'publisher.'],function(){
+            Route::get('/','indexController@index')->name('index');
+            Route::get('/add','indexController@create')->name('create');
+            Route::post('/add','indexController@store')->name('create.post');
+    });
 });
