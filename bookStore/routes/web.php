@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    echo 'Hello';
 });
 
 Route::group(['namespace'=>'admin','prefix'=>'admin','as'=>'admin.'],function(){
