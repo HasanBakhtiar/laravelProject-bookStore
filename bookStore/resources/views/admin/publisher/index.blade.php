@@ -17,14 +17,17 @@
                                             <th>Delete</th>
                                         </thead>
                                         <tbody>
+                                            @foreach ($data as $key => $value)
                                             <tr>
-                                                <td>Dakota Rice</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
+                                                <td>{{$value['name']}}</td>
+                                                <td><a class="btn btn-warning btn-sm" href="{{route('admin.publisher.edit',['id'=>$value['id']])}}">Edit</a></td>
+                                                <td><a class="btn btn-danger btn-sm" href="{{route('admin.publisher.del',['id'=>$value['id']])}}">Delete</a></td>
                                             </tr>
-                                         
+                                            @endforeach
+                                          
                                         </tbody>
                                     </table>
+                                    {{$data->links()}}
                                 </div>
                             </div>
                         </div>

@@ -11,7 +11,8 @@ class indexController extends Controller
 {
     public function index()
     {
-        return view('admin.publisher.index');
+        $data = Publishers::paginate(10);
+        return view('admin.publisher.index',['data'=>$data]);
     }
     public function create()
     {
@@ -31,5 +32,28 @@ class indexController extends Controller
         } else {
             return redirect()->back()->with('status', 'book publisher add error');
         }
+    }
+
+    public function edit($id){
+        $data = Publishers::where('id','=',$id)->get();
+        return view('admin.publisher.edit',['data'=>$data]);
+    }
+
+
+    public function update(Request $request){
+        $id = $request->route('id');
+        $all = $request->except('_token'); 
+        $all['selflink'] = mHelper::permalink($all['name']);
+        $update = Publishers::where('id','=',$id)->update($all);
+        if ($update) {
+            return redirect()->back()->with('status','Publisher Edited');  
+        }else{
+            return redirect()->back()->with('status','Publisher Dont Edited');
+        }
+    }
+
+    public function delete($id){
+        $del = Publishers::where('id','=',$id)->delete();
+        return redirect()->back();
     }
 }

@@ -24,5 +24,8 @@ Route::group(['namespace'=>'admin','prefix'=>'admin','as'=>'admin.'],function(){
             Route::get('/','indexController@index')->name('index');
             Route::get('/add','indexController@create')->name('create');
             Route::post('/add','indexController@store')->name('create.post');
+            Route::get('/edit/{id}','indexController@edit')->name('edit');
+            Route::post('/edit/{id}','indexController@update')->name('edit.post');
+            Route::get('/del/{id}','indexController@delete')->name('del');
     });
 });
