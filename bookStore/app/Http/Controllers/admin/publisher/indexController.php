@@ -48,7 +48,7 @@ class indexController extends Controller
         if ($update) {
             return redirect()->back()->with('status','Publisher Edited');  
         }else{
-            return redirect()->back()->with('status','Publisher Dont Edited');
+            return redirect()->back()->with('status','Publisher Don\'t Edited');
         }
     }
 
